@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  rabbitmq-server:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-server
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    env_file: .env
+    networks:
+      - rabbitnetwork
+
+  rabbitmq-api:
+    container_name: rabbitmq-api
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8800:8800
+    command: ["uvicorn", "producer:app", "--host", "0.0.0.0", "--port", "8800", "--reload"]
+    env_file: .env
+    volumes:
+      - ./api:/app
+    networks:
+      - rabbitnetwork
+    depends_on:
+      - rabbitmq-server
+    
+networks:
+  rabbitnetwork:
+    driver: bridge
