@@ -18,11 +18,13 @@ docker-compose up -d
 
 ## Project Structure
 ```
+├── README.md
 ├── api
 │   ├── Dockerfile
-│   ├── producer.py
+│   ├── rabbitmq.py
 │   ├── receiver.py
 │   ├── requirements.txt
+│   ├── sender.py
 │   └── utils.py
 └── docker-compose.yml
 
@@ -32,9 +34,5 @@ docker-compose up -d
 ```
 RABBITMQ_DEFAULT_USER
 RABBITMQ_DEFAULT_PASS
-RABBITMQ_USERNAME
-RABBITMQ_PASSSWORD
 RABBITMQ_HOST
-RABBITMQ_QUEUE
-ROUTING_KEY
 ```
