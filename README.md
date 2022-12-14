@@ -3,6 +3,7 @@
 ## Stack
 - Fastapi
 - RabbitMQ
+- pika
 - docker-compose
 
 ## How to use
